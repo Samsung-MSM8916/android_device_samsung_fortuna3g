@@ -2,7 +2,7 @@
 
 ### Specs (Physically inspected):
   - CPU: Qualcomm MSM8216 Snapdragon 410, 1200 MHz
-  - Codename: FORTUNAVE3G
+  - Codename: fortuna3g
   - Display Panel:
   - Display Resolution: 960x540
   - EMMC:
