@@ -1,2 +1,6 @@
 [
+	{
+		"repository": "android_device_samsung_fortunaxx-common",
+		"target_path": "android/device/samsung/fortunaxx-common"
+	}
 ]
