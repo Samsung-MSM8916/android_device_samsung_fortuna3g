@@ -43,17 +43,17 @@ void init_target_properties()
 
     std::string bootloader = property_get("ro.bootloader"); 
 
-    if (strstr(bootloader, "G530HXXU2BPH1")) {
+    if (bootloader.find("G530HXXU2BPH1") == 0) {
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
         property_set("telephony.lteOnGsmDevice","0");
-    } else if (strstr(bootloader, "G530HXXS2BPH1")) {
+    } else if (bootloader.find("G530HXXS2BPH1") == 0) {
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
         property_set("telephony.lteOnGsmDevice","0");
-    } else if (strstr(bootloader, "G530MUBU1BPG1")) {
+    } else if (bootloader.find("G530MUBU1BPG1") == 0) {
         property_set("ro.product.model", "SM-G530M");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
