@@ -1,6 +1,5 @@
 /*
    Copyright (c) 2016, The Linux Foundation. All rights reserved.
-
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
@@ -13,7 +12,6 @@
     * Neither the name of The Linux Foundation nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
-
    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
@@ -29,34 +27,40 @@
  
  
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
 #include "log.h"
 #include "util.h"
 
-#define ISMATCH(a,b)    (!strncmp(a,b,PROP_VALUE_MAX))
-
 void vendor_load_properties()
 {
-    char platform[PROP_VALUE_MAX];
     char bootloader[PROP_VALUE_MAX];
     char device[PROP_VALUE_MAX];
     char devicename[PROP_VALUE_MAX];
-    int rc;
-
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
-        return;
 
     property_get("ro.bootloader", bootloader);
-
-    property_set("ro.product.model", "SM-G530H");
-    property_set("ro.product.device", "fortuna3g");
-    property_set("persist.radio.multisim.config", "dsds");
-    property_set("ro.multisim.simslotcount", "2");
+    if (strstr(bootloader, "G530HXXU2BPH1")) {
+        property_set("ro.product.model", "SM-G530H");
+        property_set("ro.product.device", "fortuna3g");
+        property_set("persist.radio.multisim.config", "none");
+    } else if (strstr(bootloader, "G530HXXS2BPH1")) {
+        property_set("ro.product.model", "SM-G530H");
+        property_set("ro.product.device", "fortuna3g");
+        property_set("persist.radio.multisim.config", "none");
+    } else if (strstr(bootloader, "G530MUBU1BPG1")) {
+        property_set("ro.product.model", "SM-G530M");
+        property_set("ro.product.device", "fortuna3g");
+        property_set("persist.radio.multisim.config", "none");
+    } else {
+        property_set("ro.product.model", "SM-G530H");
+        property_set("ro.product.device", "fortuna3g");
+        property_set("persist.radio.multisim.config", "dsds");
+        property_set("ro.multisim.simslotcount", "2");
+    }
    
     property_get("ro.product.device", device);
     strlcpy(devicename, device, sizeof(devicename));
-    INFO("Found bootloader id %s setting build properties for %s device\n", bootloader, devicename);
+    ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, devicename);
 }
