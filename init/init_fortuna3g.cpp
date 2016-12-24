@@ -58,6 +58,11 @@ void init_target_properties()
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
         property_set("telephony.lteOnGsmDevice","0");
+    } else if (bootloader.find("G530MUBU1BPH2") == 0) {
+        property_set("ro.product.model", "SM-G530M");
+        property_set("ro.product.device", "fortuna3g");
+        property_set("persist.radio.multisim.config", "none");
+        property_set("telephony.lteOnGsmDevice","0");
     } else {
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
