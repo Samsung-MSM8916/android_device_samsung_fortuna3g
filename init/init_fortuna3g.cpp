@@ -62,7 +62,7 @@ void vendor_load_properties()
         property_set("persist.radio.multisim.config", "none");
         property_set("telephony.lteOnGsmDevice","0");
     } else if (strstr(bootloader, "G530HXXU2BPC2")) {
-        property_set("ro.product.model", "SM-G530M");
+        property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
         property_set("telephony.lteOnGsmDevice","0");
