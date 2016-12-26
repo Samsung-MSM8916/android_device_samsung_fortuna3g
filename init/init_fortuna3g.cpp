@@ -1,6 +1,5 @@
 /*
-   Copyright (c) 2016, The Linux Foundation. All rights reserved.
-
+   Copyright (c) 2013, The Linux Foundation. All rights reserved.
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
@@ -13,7 +12,6 @@
     * Neither the name of The Linux Foundation nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
-
    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
@@ -28,44 +26,48 @@
  */
 
 #include <stdlib.h>
-#include <stdio.h>
+#include <unistd.h>
 
+#include <cutils/properties.h>
 #include "vendor_init.h"
-#include "property_service.h"
 #include "log.h"
 #include "util.h"
 
-#include "init_msm8916.h"
-
-void init_target_properties()
+void vendor_load_properties()
 {
-    std::string platform = property_get("ro.board.platform");
-    if (platform != ANDROID_TARGET)
+    char platform[PROP_VALUE_MAX];
+    char bootloader[PROP_VALUE_MAX];
+    char device[PROP_VALUE_MAX];
+    char devicename[PROP_VALUE_MAX];
+    int rc;
+
+    rc = property_get("ro.board.platform", platform, NULL);
+    if (!rc || strncmp(platform, ANDROID_TARGET, PROP_VALUE_MAX))
         return;
 
-    std::string bootloader = property_get("ro.bootloader"); 
+    property_get("ro.bootloader", bootloader, NULL);
 
-    if (bootloader.find("G530HXXU2BPH1") == 0) {
+    if (strstr(bootloader, "G530HXXU2BPH1")) {
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
         property_set("telephony.lteOnGsmDevice","0");
-    } else if (bootloader.find("G530HXXS2BPH1") == 0) {
+    } else if (strstr(bootloader, "G530HXXS2BPH1")) {
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
         property_set("telephony.lteOnGsmDevice","0");
-    } else if (bootloader.find("G530MUBU1BPG1") == 0) {
+    } else if (strstr(bootloader, "G530MUBU1BPG1")) {
         property_set("ro.product.model", "SM-G530M");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
         property_set("telephony.lteOnGsmDevice","0");
-    } else if (bootloader.find("G530MUBU1BPH2") == 0) {
+    } else if (strstr(bootloader, "G530MUBU1BPH2")) {
         property_set("ro.product.model", "SM-G530M");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
         property_set("telephony.lteOnGsmDevice","0");
-    } else if (bootloader.find("G530HXXU2BPC2") == 0) {
+    } else if (strstr(bootloader, "G530HXXU2BPC2")) {
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
@@ -78,6 +80,7 @@ void init_target_properties()
         property_set("telephony.lteOnGsmDevice","0");
     }
 
-    std::string device = property_get("ro.product.device");
-    INFO("Found bootloader id %s setting build properties for %s device\n", bootloader.c_str(), device.c_str());
+    property_get("ro.product.device", device, NULL);
+    strlcpy(devicename, device, sizeof(devicename));
+    ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, devicename);
 }
