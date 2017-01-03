@@ -51,33 +51,33 @@ void vendor_load_properties()
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
-        property_set("telephony.lteOnGsmDevice","0");
+        //property_set("telephony.lteOnGsmDevice","0");
     } else if (strstr(bootloader, "G530HXXS2BPH1")) {
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
-        property_set("telephony.lteOnGsmDevice","0");
+        //property_set("telephony.lteOnGsmDevice","0");
     } else if (strstr(bootloader, "G530MUBU1BPG1")) {
         property_set("ro.product.model", "SM-G530M");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
-        property_set("telephony.lteOnGsmDevice","0");
+        //property_set("telephony.lteOnGsmDevice","0");
     } else if (strstr(bootloader, "G530MUBU1BPH2")) {
         property_set("ro.product.model", "SM-G530M");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
-        property_set("telephony.lteOnGsmDevice","0");
+        //property_set("telephony.lteOnGsmDevice","0");
     } else if (strstr(bootloader, "G530HXXU2BPC2")) {
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "none");
-        property_set("telephony.lteOnGsmDevice","0");
+        //property_set("telephony.lteOnGsmDevice","0");
     } else {
         property_set("ro.product.model", "SM-G530H");
         property_set("ro.product.device", "fortuna3g");
         property_set("persist.radio.multisim.config", "dsds");
         property_set("ro.multisim.simslotcount", "2");
-        property_set("telephony.lteOnGsmDevice","0");
+        //property_set("telephony.lteOnGsmDevice","0");
     }
 
     property_get("ro.product.device", device, NULL);
