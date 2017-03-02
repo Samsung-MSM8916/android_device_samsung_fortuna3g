@@ -1,5 +1,6 @@
 #
-# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2015-2016 The CyanogenMod Project
+#               2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +15,7 @@
 # limitations under the License.
 #
 
-# Inherit some common CM stuff.
+# Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
@@ -22,4 +23,4 @@ $(call inherit-product, device/samsung/fortuna3g/full_fortuna3g.mk)
 
 # Setup device configuration
 PRODUCT_DEVICE := fortuna3g
-PRODUCT_NAME := cm_fortuna3g
+PRODUCT_NAME := lineage_fortuna3g
